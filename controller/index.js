@@ -174,6 +174,36 @@ router.post('/webhookResponse',async function (req, res, next) {
 });
 
 
+router.get('/buy',async function(req, res){
+	const body=req.body;
+	console.log(req.body);
+
+   try {
+	   if(body.signel=="buy"){
+
+			sdk.auth(`${Config.get('server').alpaca.api_key}`, `${Config.get('server').alpaca.api_secret}`);
+		   sdk.server('https://broker-api.sandbox.alpaca.markets');
+		   sdk.createOrderForAccount({
+			 side: 'buy',
+			 type: 'market',
+			 time_in_force: 'day',
+			 symbol: 'AAPL',
+			 qty: '1'
+		   }, {
+			 account_id: '5535b821-b968-4e3d-8864-be17df74c033'
+		   })
+			 .then(({ data }) => res.send(data))
+			 .catch(err => res.send(err));
+	   
+	   }else{
+		   res.send({status:"not have buy signal"});
+	   }
+   }catch(err){
+		 res.send(err);
+   };
+
+});
+
 async function buy(data){
 	try {
 
