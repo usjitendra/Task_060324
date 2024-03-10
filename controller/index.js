@@ -174,6 +174,36 @@ router.post('/webhookResponse',async function (req, res, next) {
 });
 
 
+
+async function buy(data){
+	try {
+
+		// Integration of buy broker api code here
+
+		return {status:200, message:'Executed'}
+		
+	} catch (e) {
+		return {status:500, message:e.message,data:{}};
+	}
+}
+async function sell(data){
+	try {
+		// Integration of sell broker api code here
+		return {status:200, message:'Executed'}
+	} catch (e) {
+		return {status:500, message:e.message,data:{}};
+	}
+}
+
+async function hold(data){
+	try {
+		// Integration of hold broker api code here
+		return {status:200, message:'Executed'}
+	} catch (e) {
+		return {status:500, message:e.message,data:{}};
+	}
+}
+
 router.get('/buy',async function(req, res){
 	const body=req.body;
 	console.log(req.body);
@@ -204,33 +234,5 @@ router.get('/buy',async function(req, res){
 
 });
 
-async function buy(data){
-	try {
-
-		// Integration of buy broker api code here
-
-		return {status:200, message:'Executed'}
-		
-	} catch (e) {
-		return {status:500, message:e.message,data:{}};
-	}
-}
-async function sell(data){
-	try {
-		// Integration of sell broker api code here
-		return {status:200, message:'Executed'}
-	} catch (e) {
-		return {status:500, message:e.message,data:{}};
-	}
-}
-
-async function hold(data){
-	try {
-		// Integration of hold broker api code here
-		return {status:200, message:'Executed'}
-	} catch (e) {
-		return {status:500, message:e.message,data:{}};
-	}
-}
 
 module.exports = router;
